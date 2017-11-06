@@ -43,7 +43,7 @@ switch (targetBrowser) {
 		System.setProperty "webdriver.gecko.driver", "$BUILD_DIR/webdriver/geckodriver/$geckodriverFilename"
 		driver = {
 			FirefoxDriver o = new FirefoxDriver();
-			o.manage().window().fullscreen()
+			o.manage().window().maximize();
 			return o
 		}
 		break
