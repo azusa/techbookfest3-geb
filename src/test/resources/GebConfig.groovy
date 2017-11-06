@@ -5,6 +5,7 @@
 */
 
 import org.apache.commons.lang3.SystemUtils
+import org.openqa.selenium.Dimension
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.edge.EdgeDriver
@@ -39,11 +40,13 @@ switch (targetBrowser) {
 		break
 	case "firefox" :
 		atCheckWaiting = 1
+		int width = 1920;
+		int height = 1080;
 		def geckodriverFilename = SystemUtils.IS_OS_WINDOWS ? "geckodriver.exe" : "geckodriver"
 		System.setProperty "webdriver.gecko.driver", "$BUILD_DIR/webdriver/geckodriver/$geckodriverFilename"
 		driver = {
 			FirefoxDriver o = new FirefoxDriver();
-			o.manage().window().maximize();
+			o.manage().window().setSize(new Dimension(width, height));
 			return o
 		}
 		break
