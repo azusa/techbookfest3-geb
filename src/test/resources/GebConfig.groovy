@@ -41,7 +41,11 @@ switch (targetBrowser) {
 		atCheckWaiting = 1
 		def geckodriverFilename = SystemUtils.IS_OS_WINDOWS ? "geckodriver.exe" : "geckodriver"
 		System.setProperty "webdriver.gecko.driver", "$BUILD_DIR/webdriver/geckodriver/$geckodriverFilename"
-		driver = { new FirefoxDriver() }
+		driver = {
+			FirefoxDriver o = new FirefoxDriver();
+			o.manage().window().fullscreen()
+			return o
+		}
 		break
 	case "chromeHeadless" :
 		setUpChromeDriver(BUILD_DIR)
